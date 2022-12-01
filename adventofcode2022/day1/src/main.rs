@@ -42,7 +42,7 @@ fn main() {
         }).0.into_iter().fold(Vec::from([0,0,0]), |acc, e| match e.into_iter().fold(0, |acc, e| acc + e.parse::<i32>().unwrap()) {
             n => array_to_vec(sort_array(n, vec_to_array(acc.as_slice())), &mut Vec::new()).clone()
         }
-        ).into_iter().sum::<i32>()),//.into_iter().sum::<i32>()),
+        ).into_iter().sum::<i32>()),
         Err(e) => panic!("{}", e.to_string())
     };
 }
