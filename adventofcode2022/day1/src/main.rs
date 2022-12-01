@@ -32,6 +32,7 @@ fn main() {
         Err(e) => panic!("{}", e.to_string())
     };
     */
+    // Part2
     match read_file("src/input.txt") {
         Ok(s) => print!("{:?} \n", s.split("\n").into_iter().fold((Vec::new(), Vec::new()), |(mut v, mut vs), e| if e.is_empty() {
             v.push(vs);
