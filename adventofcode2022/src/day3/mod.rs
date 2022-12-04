@@ -20,14 +20,14 @@ fn intersect_item(group: impl IntoIterator<Item = &'static str>) -> usize {
         .expect("only one usize element here")
 }
 
-fn part1(s: &'static str) -> usize {
+pub fn part1(s: &'static str) -> usize {
     s.lines()
     .map(|l| l.split_at(l.len()/2))
     .map(|(l, r)| intersect_item([l,r]))
     .sum()
 }
 
-fn part2(s: &'static str) -> usize {
+pub fn part2(s: &'static str) -> usize {
     s.lines()
     .chunks(3)
     .into_iter()
@@ -49,11 +49,4 @@ mod tests {
         let result = part2(include_str!("test.txt"));
         assert_eq!(result, 70);
     }
-}
-
-fn main() {
-    let result = part1(include_str!("input.txt"));
-    println!("{:?}", result);
-    let result = part2(include_str!("input.txt"));
-    println!("{:?}", result);
 }

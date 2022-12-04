@@ -58,10 +58,3 @@ mod tests {
     }
 }
 
-fn main () {
-    let result = part1(include_str!("input.txt"));
-    println!("{}", result);
-    
-    let result = part2(include_str!("input.txt"));
-    println!("{}", result);
-}
