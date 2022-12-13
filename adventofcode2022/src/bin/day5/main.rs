@@ -36,7 +36,7 @@ fn convert(s: &str) -> Crate {
     }
 }
 
-fn exec_instruction(op: Operation, s: &mut Stacks, mut f: impl FnMut(Vec<Crate>) -> Vec<Crate>) -> Stacks {
+fn exec_instruction(op: &Operation, s: &mut Stacks, mut f: impl FnMut(Vec<Crate>) -> Vec<Crate>) -> Stacks {
     let mut v: Vec<Crate> = Vec::new();
     for _ in 0..op.quantity {
         let vc = s.get_mut(op.from).unwrap();
@@ -96,7 +96,7 @@ fn parse_operations(s: &'static str) -> Operations {
 fn part1(s: &'static str) -> String {
     let strs: (&str, &str) = s.split_inclusive("\n\n").collect_tuple().expect("2 elements");
     let ops = parse_operations(strs.1);
-    let out = ops.into_iter()
+    let out = ops.iter()
     .fold(parse_stacks(strs.0), |v, e| exec_instruction(e, &mut v.clone(), |v| v));
     
     out.iter().fold(Vec::new(), |mut v, e| {
@@ -112,7 +112,7 @@ fn part1(s: &'static str) -> String {
 fn part2(s: &'static str) -> String {
     let strs: (&str, &str) = s.split_inclusive("\n\n").collect_tuple().expect("2 elements");
     let ops = parse_operations(strs.1);
-    let out = ops.into_iter()
+    let out = ops.iter()
     .fold(parse_stacks(strs.0), |v, e| exec_instruction(e, &mut v.clone(), |v| v.into_iter().rev().collect()));
     
     out.iter().fold(Vec::new(), |mut v, e| {
