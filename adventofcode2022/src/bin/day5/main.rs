@@ -48,7 +48,7 @@ fn exec_instruction(op: Operation, s: &mut Stacks, mut f: impl FnMut(Vec<Crate>)
 }
 
 fn organize_stacks(s: Stacks, c: usize) -> Stacks {
-    let mut v: Vec<Vec<Crate>> = vec![Vec::new(); c];
+    let mut v: Stacks = vec![Vec::new(); c];
     for e in s {
         for (i, &c) in e.iter().enumerate() {
             if c == Empty {
