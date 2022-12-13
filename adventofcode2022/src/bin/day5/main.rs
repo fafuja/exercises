@@ -78,9 +78,9 @@ fn parse_stacks(s: &'static str) -> Stacks {
 }
 
 fn parse_operation(s: &'static str) -> IResult<&'static str, Operation> {
-    let line_parsed = tuple((
-        tag("move "), u32, tag(" from "), u32, tag(" to "), u32
-    ));
+    let line_parsed = tuple(
+        (tag("move "), u32, tag(" from "), u32, tag(" to "), u32)
+    );
     map(line_parsed, |e| Operation {
         quantity: e.1 as usize,
         from: (e.3 as usize)-1,
