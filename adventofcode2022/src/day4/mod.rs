@@ -1,6 +1,8 @@
 use std::{collections::HashSet, hash::Hash};
 
 fn check<T: Hash + Eq>(a: &HashSet<T>, b: &HashSet<T>) -> bool {
+    // bad take... should've compared start and end element to see if it contains whole set
+    // this is slower...
     match a.is_superset(b){
         false => b.is_superset(a),
         _ => true,
