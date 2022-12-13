@@ -93,36 +93,36 @@ fn parse_operations(s: &'static str) -> Operations {
     lines
 }
 
-fn part1(s: &'static str) -> String {
+fn part1(s: &'static str) -> Vec<char> {
     let strs: (&str, &str) = s.split_inclusive("\n\n").collect_tuple().expect("2 elements");
     let ops = parse_operations(strs.1);
     let out = ops.iter()
     .fold(parse_stacks(strs.0), |v, e| exec_instruction(e, &mut v.clone(), |v| v));
     
     out.iter().fold(Vec::new(), |mut v, e| {
-        let e = match e.last().unwrap() {
+        let e = match e.last().copied().unwrap() {
             Value(e) => e,
-            _ => &' '
+            _ => ' '
         };
         v.push(e);
         v
-    }).iter().join("")
+    })
 }
 
-fn part2(s: &'static str) -> String {
+fn part2(s: &'static str) -> Vec<char> {
     let strs: (&str, &str) = s.split_inclusive("\n\n").collect_tuple().expect("2 elements");
     let ops = parse_operations(strs.1);
     let out = ops.iter()
     .fold(parse_stacks(strs.0), |v, e| exec_instruction(e, &mut v.clone(), |v| v.into_iter().rev().collect()));
     
     out.iter().fold(Vec::new(), |mut v, e| {
-        let e = match e.last().unwrap() {
+        let e = match e.last().copied().unwrap() {
             Value(e) => e,
-            _ => &' '
+            _ => ' '
         };
         v.push(e);
         v
-    }).iter().join("")
+    })
 }
 
 #[cfg(test)]
@@ -132,19 +132,19 @@ mod tests {
     #[test]
     fn test1() {
         let result = part1(include_str!("test.txt"));
-        assert_eq!(result, "CMZ");
+        assert_eq!(result.iter().join(""), "CMZ");
     }
 
     #[test]
     fn test2() {
         let result = part2(include_str!("test.txt"));
-        assert_eq!(result, "MCD");
+        assert_eq!(result.iter().join(""), "MCD");
     }
 }
 
 fn main() {
     let result = part1(include_str!("input.txt"));
-    println!("{}", result);    
+    println!("{}", result.iter().join(""));    
     let result = part2(include_str!("input.txt"));
-    println!("{}", result);
+    println!("{}", result.iter().join(""));
 }
