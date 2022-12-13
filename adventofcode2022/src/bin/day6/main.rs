@@ -1,10 +1,10 @@
+use itertools::Itertools;
 
 fn solve(s: & str, n: usize) -> usize {
     s.as_bytes()
     .windows(n)
     .position(|e| e.iter().all_unique())
-    .unwrap()
-    + n
+    .unwrap() + n
 }
 fn part1(s: &'static str) -> usize {
     solve(s, 4)
