@@ -1,7 +1,5 @@
 use std::collections::HashMap;
-
-pub fn parse(s: &str) -> Vec<usize>{
-    /* Part 1
+pub fn part1(s: &str) -> Vec<usize>{
        let hm = HashMap::from([ 
         ("A X", 4),
         ("A Y", 8),
@@ -12,7 +10,10 @@ pub fn parse(s: &str) -> Vec<usize>{
         ("C X", 7),
         ("C Y", 2),
         ("C Z", 6),
-       ]); */
+       ]);
+    s.lines().map(|e| hm.get(e).unwrap().clone()).collect()
+}
+pub fn part2(s: &str) -> Vec<usize>{
     let hm = HashMap::from([
         ("A X", 3),
         ("A Y", 4),
@@ -36,14 +37,20 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test() {
-        let input = parse(include_str!("test.txt"));
-        //assert_eq!(15, calculate(input)); Part1
+    fn test1() {
+        let input = part1(include_str!("test.txt"));
+        assert_eq!(15, calculate(input));
+    }
+    #[test]
+    fn test2() {
+        let input = part2(include_str!("test.txt"));
         assert_eq!(12, calculate(input));
     }
 }
 
 fn main (){
-    let input = parse(include_str!("input.txt"));
-    println!("{}", calculate(input));
+    let result = part1(include_str!("input.txt"));
+    println!("{}", calculate(result));
+    let result = part2(include_str!("input.txt"));
+    println!("{}", calculate(result));
 }

@@ -41,7 +41,7 @@ mod tests {
 
     #[test]
     fn test1() {
-        let result: usize= part1(include_str!("test.txt"));
+        let result = part1(include_str!("test.txt"));
         assert_eq!(result, 157);
     }
     #[test]
@@ -49,4 +49,11 @@ mod tests {
         let result = part2(include_str!("test.txt"));
         assert_eq!(result, 70);
     }
+}
+
+fn main() {
+    let result = part1(include_str!("test.txt"));
+    println!("{}", result);
+    let result = part2(include_str!("test.txt"));
+    println!("{}", result);
 }
