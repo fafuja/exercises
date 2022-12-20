@@ -1,13 +1,11 @@
 use itertools::Itertools;
 use nom::{
     IResult,
-    bytes::streaming::take,
     sequence::{terminated, tuple},
     multi::{many_till, separated_list0},
-    bytes::streaming::tag,
+    bytes::complete::{tag, take},
     combinator::{opt, eof, map},
-    character::complete::line_ending,
-    character::streaming::u32
+    character::complete::{line_ending, u32},
 };
 use Crate::*;
 
