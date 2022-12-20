@@ -24,7 +24,7 @@ enum Filesystem {
 fn parse_directory(s: &'static str) -> Parsed {
     let file = map(u32, |e| e as usize);
     let dir = map(tag("dir"), |_| 0);
-    let dirorfile = terminated(alt((file, dir)), not_line_ending.and(opt(line_ending))); //opt(line_ending) return Incomplete error wtf??
+    let dirorfile = terminated(alt((file, dir)), not_line_ending.and(opt(line_ending)));
     preceded(tag("ls\n"), map(fold_many0(dirorfile, || 0, |acc, e| {
         acc+e
     }), |e| D(e)))(s)
@@ -73,7 +73,6 @@ fn part2(s: &'static str) -> usize {
     let dif = 70000000 - result[&vec![]];
     result.values().copied().filter(|&e| e + dif >= 30000000).min().unwrap()
 }
-//17719346 + 7214296 = 24933642
 #[cfg(test)]
 mod tests {
     use super::*;
