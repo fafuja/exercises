@@ -27,9 +27,8 @@ fn line(data: &Parsed, a: &Coordinate, d: & Coordinate) -> Vec<u32> {
     v
 }
 
-fn part1(p: &Parsed) -> usize {
-    let data = p.iter();
-    data.fold(0, |acc, (a, va)| {
+fn part1(data: &Parsed) -> usize {
+    data.iter().fold(0, |acc, (a, va)| {
         let dir = [(1,0),(0,1),(-1,0),(0,-1)].map(|d| line(p, a, &d));
         if dir.iter().any(|v| v.iter().all(|vb| va > vb)) {
             acc + 1
@@ -39,9 +38,8 @@ fn part1(p: &Parsed) -> usize {
     })
 }
 
-fn part2(p: &Parsed) -> usize {
-    let data = p.iter();
-    data.fold(0, |acc, (a, va)| {
+fn part2(data: &Parsed) -> usize {
+    data.iter().fold(0, |acc, (a, va)| {
         let dir = [(1,0),(0,1),(-1,0),(0,-1)].map(|d| line(p, a, &d));
         let scenic: usize = dir.map(|v| {
             match v.iter().fold_while(0, |i, vb| if vb >= va { Done(i + 1) } else { Continue(i + 1) }) {
