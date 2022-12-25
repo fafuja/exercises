@@ -44,7 +44,7 @@ fn part2(p: &Parsed) -> usize {
     data.clone().fold(0, |acc, (a, va)| {
         let dir = [(1,0),(0,1),(-1,0),(0,-1)].map(|e| line(p, a, &e));
         let scenic: usize = dir.map(|v| {
-            match v.iter().fold_while(0, |i: usize, (_, vb)| if vb >= va { Done(i + 1) } else { Continue(i + 1) }) {
+            match v.iter().fold_while(0, |i, (_, vb)| if vb >= va { Done(i + 1) } else { Continue(i + 1) }) {
                 Done(n) => n,
                 Continue(n) => n
             }
