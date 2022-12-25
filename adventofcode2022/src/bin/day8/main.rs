@@ -72,8 +72,6 @@ mod tests {
 }
 
 fn main() {
-    let result = part1(&parse(include_str!("input.txt")));
-    println!("{}", result);    
-    let result = part2(&parse(include_str!("input.txt")));
-    println!("{}", result);    
+    println!("{}", part1(&parse(include_str!("input.txt"))));    
+    println!("{}", part2(&parse(include_str!("input.txt"))));    
 }
