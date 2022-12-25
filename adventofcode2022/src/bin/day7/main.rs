@@ -27,11 +27,11 @@ fn parse_directory(s: &'static str) -> Parsed {
     let dirorfile = terminated(alt((file, dir)), not_line_ending.and(opt(line_ending)));
     preceded(tag("ls\n"), map(fold_many0(dirorfile, || 0, |acc, e| {
         acc+e
-    }), |e| D(e)))(s)
+    }), D))(s)
 }
 
 fn parse_command(s: &'static str) -> Parsed {
-    let cd = map(alt((tag("/"), tag(".."), alphanumeric0)), |e| C(e));
+    let cd = map(alt((tag("/"), tag(".."), alphanumeric0)), C);
     preceded(tag("cd "), terminated(cd, line_ending))(s)
 }
 
@@ -86,7 +86,6 @@ mod tests {
     #[test]
     fn test2() {
         let result = part2(include_str!("test.txt"));
-        println!("{}", result);
         assert_eq!(result, 24933642);
     }
 }
