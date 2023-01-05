@@ -48,12 +48,14 @@ fn simulate(data: Vec<Op>) -> Vec<i32> {
 
 fn part1(data: Vec<Op>) -> i32 {
     let cycles = [20, 60, 100, 140, 180, 220];
-    simulate(data).iter().enumerate().filter(|(i, _)| cycles.contains(i)).map(|(i, v)| (i as i32) * v).sum()
+    let data = simulate(data);
+    data.iter().enumerate().filter(|(i, _)| cycles.contains(i)).map(|(i, v)| (i as i32) * v).sum()
 }
 
 fn part2(data: Vec<Op>) -> String {
     let mut strings = Vec::new();
-    simulate(data).iter().skip(1).chunks(40).into_iter()
+    let data = simulate(data);
+    data.iter().skip(1).chunks(40).into_iter()
     .for_each(|v| {
         strings.push("\n");
         v.fold(1, |acc, &e| {
