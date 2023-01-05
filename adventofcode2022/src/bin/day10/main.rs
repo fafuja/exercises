@@ -55,8 +55,7 @@ fn part1(data: Vec<Op>) -> i32 {
 fn part2(data: Vec<Op>) -> String {
     let mut strings = Vec::new();
     let data = simulate(data);
-    data.iter().skip(1).chunks(40).into_iter()
-    .for_each(|v| {
+    data.iter().skip(1).chunks(40).into_iter().for_each(|v| {
         strings.push("\n");
         v.fold(1, |acc, &e| {
             if acc >= e && acc <= e+2 {
