@@ -34,7 +34,7 @@ fn convert(s: &str) -> Crate {
     }
 }
 
-fn exec_instruction(op: &Operation, s: &mut Stacks, mut f: impl FnMut(Vec<Crate>) -> Vec<Crate>) -> Stacks {
+fn exec_instruction(op: &Operation, s: &mut Stacks, mut f: impl FnOnce(Vec<Crate>) -> Vec<Crate>) -> Stacks {
     let mut v: Vec<Crate> = Vec::new();
     for _ in 0..op.quantity {
         let vc = s.get_mut(op.from).unwrap();
